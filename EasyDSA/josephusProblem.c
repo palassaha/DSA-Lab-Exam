@@ -65,6 +65,32 @@ void josephus(node **lnp){
     }
 }
 
+void josephus2(node **lnp){
+    int n,k=1;
+    printf("Enter the step for josephus ");
+    scanf("%d",&n);
+    node *q=*lnp,*p=(*lnp)->next;
+    while(*lnp!=(*lnp)->next){
+        k=1;
+        while(k<n){
+            q=p;
+            p=p->next;
+            k++;
+        }
+        if(p!=*lnp){
+            q->next=p->next;
+            p = p->next;
+        }
+        else{
+            q->next=p->next;
+            *lnp=q;
+            p = p->next;
+        }
+        print(&*lnp);
+    }
+}
+
+
 int main(){
     int n,i;
     printf("Enter no. of nodes you want to enter: ");
@@ -73,6 +99,6 @@ int main(){
         createNode(&lnp);
     }
     print(&lnp);
-    josephus(&lnp);
+    josephus2(&lnp);
     
 }
